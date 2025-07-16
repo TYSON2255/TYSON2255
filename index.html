@@ -828,10 +828,10 @@
       formData.append('reqtype', 'fileupload');
 
       try {
-        const res = await fetch('https://catbox.moe/user/api.php', {
-          method: 'POST',
-          body: formData
-        });
+  const res = await fetch(`https://api.imgbb.com/1/upload?expiration=600&key=f5737dee5e945e45f572177baa65e79b`, {
+    method: 'POST',
+    body: formData
+  });
 
         const text = await res.text();
         if (!text.startsWith('http')) throw new Error('فشل رفع الصورة');
