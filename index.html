@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>✨ تزنيج الصور | TYSON PRO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #6a11cb;
+      --secondary-color: #2575fc;
+      --accent-color: #ff4d4d;
+      --text-color: #f8f9fa;
+      --dark-bg: #121212;
+      --card-bg: #1e1e1e;
+      --success-color: #28a745;
+      --input-bg: rgba(255, 255, 255, 0.08);
+      --glow-color: rgba(106, 17, 203, 0.6);
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #000000, #1a1a2e);
+      font-family: 'Tajawal', sans-serif;
+      color: var(--text-color);
+      text-align: center;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+    
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 30%, rgba(106, 17, 203, 0.15) 0%, transparent 40%),
+                  radial-gradient(circle at 80% 70%, rgba(37, 117, 252, 0.15) 0%, transparent 40%);
+      z-index: -1;
+    }
+
+    header {
+      padding: 80px 20px 60px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      position: relative;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+      margin-bottom: 60px;
+      overflow: hidden;
+    }
+    
+    header::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+      z-index: 1;
+    }
+
+    .profile-container {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 30px;
+      z-index: 2;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
+    }
+
+    .profile-image {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 4px solid white;
+      background: url('https://i.postimg.cc/fTDZn3bg/1752638081665.jpg') center/cover no-repeat;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+      position: relative;
+      z-index: 2;
+    }
+
+    .profile-image:hover {
+      transform: scale(1.1) rotate(8deg);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    .profile-border {
+      position: absolute;
+      top: -12px;
+      left: -12px;
+      right: -12px;
+      bottom: -12px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+      background-size: 300% 300%;
+      animation: gradient 6s ease infinite, pulse 4s ease infinite;
+      z-index: 1;
+      filter: blur(12px);
+      opacity: 0.8;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.05); opacity: 0.9; }
+      100% { transform: scale(1); opacity: 0.8; }
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      margin: 15px 0;
+      letter-spacing: 1px;
+      color: white;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      font-weight: 900;
+      position: relative;
+      display: inline-block;
+      z-index: 2;
+      background: linear-gradient(90deg, #ffffff, #f3f3f3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textGlow 3s ease-in-out infinite alternate;
+    }
+    
+    @keyframes textGlow {
+      0% { text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+      100% { text-shadow: 0 0 20px rgba(255,255,255,0.6), 0 0 30px var(--glow-color); }
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--accent-color);
+      border-radius: 2px;
+      box-shadow: 0 2px 10px rgba(255, 77, 77, 0.6);
+    }
+
+    .subtitle {
+      font-size: 1.4rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.9);
+      position: relative;
+      z-index: 2;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .container {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: -70px auto 0;
+      position: relative;
+      z-index: 3;
+    }
+
+    .card {
+      background: rgba(30, 30, 30, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 
+                 0 0 0 1px rgba(255, 255, 255, 0.05);
+      margin-bottom: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        rgba(106, 17, 203, 0.1) 0%,
+        rgba(37, 117, 252, 0.1) 50%,
+        transparent 100%
+      );
+      transform: rotate(30deg);
+      z-index: -1;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.01);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 
+                  0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+
+    .input-group {
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    input, textarea, button, .file-input-label {
+      width: 100%;
+      max-width: 100%;
+      padding: 20px 30px;
+      margin: 20px auto;
+      border-radius: 12px;
+      border: none;
+      background: var(--input-bg);
+      color: var(--text-color);
+      font-size: 1.2rem;
+      font-family: 'Tajawal', sans-serif;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      display: block;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 0 3px var(--secondary-color),
+                  0 5px 20px rgba(37, 117, 252, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .file-input-label {
+      cursor: pointer;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px dashed rgba(255, 255, 255, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 250px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s ease;
+    }
+    
+    .file-input-label::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(106,17,203,0.1), rgba(37,117,252,0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .file-input-label:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--secondary-color);
+      box-shadow: 0 10px 30px rgba(37, 117, 252, 0.3);
+      transform: translateY(-5px);
+    }
+    
+    .file-input-label:hover::after {
+      opacity: 1;
+    }
+
+    .file-input-label i {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      color: var(--secondary-color);
+      transition: all 0.4s ease;
+      text-shadow: 0 2px 10px rgba(37, 117, 252, 0.5);
+    }
+
+    .file-input-label:hover i {
+      transform: scale(1.2) rotate(10deg);
+      color: var(--accent-color);
+      text-shadow: 0 3px 15px rgba(255, 77, 77, 0.6);
+    }
+
+    #imageInput {
+      display: none;
+    }
+
+    #prompt {
+      min-height: 150px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    button {
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      font-weight: bold;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      padding: 25px;
+      margin-top: 40px;
+      box-shadow: 0 10px 30px rgba(106, 17, 203, 0.5),
+                  inset 0 0 10px rgba(255,255,255,0.2);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border-radius: 15px;
+    }
+    
+    button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.2) 0%,
+        rgba(255,255,255,0) 50%,
+        rgba(255,255,255,0.2) 100%
+      );
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    button:hover::after {
+      transform: translateX(100%);
+    }
+
+    button:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(106, 17, 203, 0.7),
+                  inset 0 0 15px rgba(255,255,255,0.3);
+      background: linear-gradient(135deg, #7a1bdb, #2d85ff);
+    }
+
+    button:active {
+      transform: translateY(2px) scale(0.98);
+    }
+    
+    button i {
+      margin-left: 10px;
+      transition: transform 0.3s ease;
+    }
+    
+    button:hover i {
+      transform: rotate(15deg);
+    }
+
+    .result-container {
+      margin: 50px auto;
+      padding: 40px;
+      background: rgba(30, 30, 30, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+                  0 0 0 1px rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s ease;
+    }
+    
+    .result-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+      box-shadow: 0 0 10px var(--glow-color);
+    }
+    
+    .result-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        rgba(106,17,203,0.1) 0%,
+        rgba(37,117,252,0.1) 50%,
+        transparent 100%
+      );
+      z-index: -1;
+    }
+
+    img {
+      margin: 30px auto;
+      max-width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4),
+                  0 0 0 1px rgba(255, 255, 255, 0.1);
+      transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      max-height: 600px;
+      object-fit: contain;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    img:hover {
+      transform: scale(1.03) rotate(1deg);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6),
+                  0 0 0 1px rgba(255, 255, 255, 0.2);
+    }
+
+    #result {
+      font-size: 1.4rem;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 25px;
+      position: relative;
+    }
+
+    .loading {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border: 5px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      border-top-color: var(--secondary-color);
+      border-bottom-color: var(--primary-color);
+      animation: spin 1.5s linear infinite;
+      margin-left: 20px;
+      filter: drop-shadow(0 0 5px rgba(37, 117, 252, 0.5));
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .success-message {
+      color: var(--success-color);
+      font-weight: bold;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      text-shadow: 0 2px 10px rgba(40, 167, 69, 0.4);
+      animation: bounceIn 0.8s ease;
+    }
+    
+    @keyframes bounceIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .error-message {
+      color: var(--accent-color);
+      font-weight: bold;
+      text-shadow: 0 2px 10px rgba(255, 77, 77, 0.4);
+      animation: shake 0.5s ease;
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-5px); }
+      40%, 80% { transform: translateX(5px); }
+    }
+
+    footer {
+      margin-top: 100px;
+      padding: 40px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.1rem;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,1));
+      position: relative;
+      z-index: 2;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(
+        to right,
+        transparent,
+        var(--primary-color),
+        var(--secondary-color),
+        transparent
+      );
+      box-shadow: 0 0 20px var(--glow-color);
+    }
+    
+    footer::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.03)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+      z-index: -1;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 30px;
+      padding: 15px 35px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 8px 25px rgba(106, 17, 203, 0.5),
+                  inset 0 0 10px rgba(255,255,255,0.2);
+      position: relative;
+      overflow: hidden;
+      font-size: 1.2rem;
+      border: none;
+    }
+    
+    .download-btn i {
+      margin-left: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 12px 35px rgba(106, 17, 203, 0.7),
+                  inset 0 0 15px rgba(255,255,255,0.3);
+      background: linear-gradient(135deg, #7a1bdb, #2d85ff);
+    }
+    
+    .download-btn:hover i {
+      transform: translateY(-3px);
+    }
+
+    .download-btn:active {
+      transform: translateY(2px) scale(0.98);
+    }
+    
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .particle {
+      position: absolute;
+      background: rgba(255,255,255,0.5);
+      border-radius: 50%;
+      filter: blur(1px);
+      animation: float linear infinite;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      .subtitle {
+        font-size: 1.1rem;
+        max-width: 90%;
+      }
+      
+      .profile-container {
+        width: 150px;
+        height: 150px;
+      }
+      
+      .card {
+        padding: 25px;
+      }
+      
+      input, textarea, button, .file-input-label {
+        padding: 16px 20px;
+        font-size: 1rem;
+      }
+      
+      button {
+        font-size: 1.2rem;
+        padding: 20px;
+      }
+      
+      .file-input-label {
+        min-height: 200px;
+      }
+      
+      #prompt {
+        min-height: 120px;
+      }
+      
+      .result-container {
+        padding: 25px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .subtitle {
+        font-size: 1rem;
+      }
+      
+      .profile-container {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .card {
+        padding: 20px;
+      }
+      
+      input, textarea, button, .file-input-label {
+        padding: 14px 18px;
+        font-size: 0.95rem;
+      }
+      
+      button {
+        font-size: 1.1rem;
+        padding: 18px;
+      }
+      
+      .file-input-label {
+        min-height: 160px;
+      }
+      
+      #prompt {
+        min-height: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+
+  <header>
+    <div class="profile-container">
+      <div class="profile-border"></div>
+      <div class="profile-image"></div>
+    </div>
+    <h1 class="animate__animated animate__fadeInDown">✨ تزنيج الصور PRO</h1>
+    <p class="subtitle animate__animated animate__fadeInUp animate__delay-1s">أداة متطورة لتعديل الصور باحترافية وجودة عالية<br>غير لون البشرة بضغطة واحدة مع الحفاظ على كل التفاصيل</p>
+  </header>
+
+  <div class="container">
+    <div class="card animate__animated animate__zoomIn animate__delay-2s">
+      <div class="input-group">
+        <label for="imageInput" class="file-input-label" id="fileLabel">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <span>اسحب وأسقط الصورة هنا أو اضغط للاختيار</span>
+          <span id="fileName" style="font-size:0.9rem; color:rgba(255,255,255,0.6); margin-top:10px;"></span>
+        </label>
+        <input type="file" id="imageInput" accept="image/*" />
+      </div>
+      
+      <textarea id="prompt" placeholder="اكتب هنا التعديلات المطلوبة (اختياري)... مثال: 'غير لون البشرة إلى الأسود مع الحفاظ على كل التفاصيل الأخرى كما هي، اجعل التعديل طبيعيًا وواقعيًا'"></textarea>
+      
+      <button onclick="startProcess()">
+        <span id="buttonText">🎨 بدء التعديل <i class="fas fa-magic"></i></span>
+      </button>
+    </div>
+
+    <div class="result-container" id="result">
+      <span id="statusText">📌 اختر صورة لبدء المعالجة</span>
+    </div>
+  </div>
+
+  <footer class="animate__animated animate__fadeInUp animate__delay-3s">
+    &copy; 2025 - تصميم وتطوير <span style="color:var(--secondary-color); font-weight:bold;">TYSON ELYOUTUOPAR</span> | كل الحقوق محفوظة
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // إنشاء جسيمات متحركة
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = window.innerWidth < 768 ? 30 : 50;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // أحجام وألوان عشوائية
+        const size = Math.random() * 5 + 2;
+        const opacity = Math.random() * 0.5 + 0.1;
+        const color = `rgba(${Math.floor(Math.random() * 100 + 155)}, 
+                      ${Math.floor(Math.random() * 100 + 155)}, 
+                      ${Math.floor(Math.random() * 100 + 155)}, 
+                      ${opacity})`;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.background = color;
+        
+        // مواقع عشوائية
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        
+        // مدة وتأخير للحركة
+        const duration = Math.random() * 20 + 10;
+        const delay = Math.random() * 10;
+        particle.style.animation = `float ${duration}s linear ${delay}s infinite`;
+        
+        particlesContainer.appendChild(particle);
+      }
+    }
+    
+    // تحسين تجربة المستخدم مع سحب وإسقاط الملفات
+    const fileLabel = document.getElementById('fileLabel');
+    const fileName = document.getElementById('fileName');
+    const imageInput = document.getElementById('imageInput');
+    const statusText = document.getElementById('statusText');
+    const buttonText = document.getElementById('buttonText');
+    const resultDiv = document.getElementById('result');
+    
+    // عرض اسم الملف عند اختياره
+    imageInput.addEventListener('change', function(e) {
+      if (this.files[0]) {
+        fileName.textContent = this.files[0].name;
+        statusText.textContent = '✔️ جاهز للمعالجة!';
+        resultDiv.style.background = 'rgba(40, 167, 69, 0.1)';
+        
+        // عرض معاينة الصورة
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          fileLabel.innerHTML = `
+            <img src="${event.target.result}" style="max-height:120px; border-radius:8px; margin-bottom:10px;" />
+            <span>${this.files[0].name}</span>
+            <span id="fileName" style="font-size:0.9rem; color:rgba(255,255,255,0.6); margin-top:5px;">انقر لتغيير الصورة</span>
+          `;
+        };
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+    
+    // دعم سحب وإسقاط الملفات
+    fileLabel.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      fileLabel.style.borderColor = 'var(--secondary-color)';
+      fileLabel.style.background = 'rgba(255, 255, 255, 0.1)';
+      fileLabel.innerHTML = '<i class="fas fa-cloud-upload-alt"></i><span>أسقط الصورة هنا للرفع</span>';
+    });
+    
+    fileLabel.addEventListener('dragleave', () => {
+      fileLabel.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+      fileLabel.style.background = 'rgba(255, 255, 255, 0.05)';
+      resetFileLabel();
+    });
+    
+    fileLabel.addEventListener('drop', (e) => {
+      e.preventDefault();
+      fileLabel.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+      fileLabel.style.background = 'rgba(255, 255, 255, 0.05)';
+      
+      if (e.dataTransfer.files.length) {
+        imageInput.files = e.dataTransfer.files;
+        fileName.textContent = e.dataTransfer.files[0].name;
+        statusText.textContent = '✔️ جاهز للمعالجة!';
+        resultDiv.style.background = 'rgba(40, 167, 69, 0.1)';
+        
+        // عرض معاينة الصورة
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          fileLabel.innerHTML = `
+            <img src="${event.target.result}" style="max-height:120px; border-radius:8px; margin-bottom:10px;" />
+            <span>${e.dataTransfer.files[0].name}</span>
+            <span id="fileName" style="font-size:0.9rem; color:rgba(255,255,255,0.6); margin-top:5px;">انقر لتغيير الصورة</span>
+          `;
+        };
+        reader.readAsDataURL(e.dataTransfer.files[0]);
+      }
+    });
+    
+    function resetFileLabel() {
+      if (imageInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          fileLabel.innerHTML = `
+            <img src="${event.target.result}" style="max-height:120px; border-radius:8px; margin-bottom:10px;" />
+            <span>${imageInput.files[0].name}</span>
+            <span id="fileName" style="font-size:0.9rem; color:rgba(255,255,255,0.6); margin-top:5px;">انقر لتغيير الصورة</span>
+          `;
+        };
+        reader.readAsDataURL(imageInput.files[0]);
+      } else {
+        fileLabel.innerHTML = `
+          <i class="fas fa-cloud-upload-alt"></i>
+          <span>اسحب وأسقط الصورة هنا أو اضغط للاختيار</span>
+          ${fileName.textContent ? `<span id="fileName" style="font-size:0.9rem; color:rgba(255,255,255,0.6); margin-top:10px;">${fileName.textContent}</span>` : ''}
+        `;
+      }
+    }
+    
+    async function uploadToCatbox(file) {
+      const formData = new FormData();
+      formData.append('fileToUpload', file);
+      formData.append('reqtype', 'fileupload');
+
+      try {
+        const res = await fetch('https://catbox.moe/user/api.php', {
+          method: 'POST',
+          body: formData
+        });
+
+        const text = await res.text();
+        if (!text.startsWith('http')) throw new Error('فشل رفع الصورة');
+        return text;
+      } catch (err) {
+        throw new Error('حدث خطأ أثناء رفع الصورة، حاول مرة أخرى');
+      }
+    }
+
+    async function startProcess() {
+      const imageInput = document.getElementById('imageInput');
+      const promptInput = document.getElementById('prompt');
+
+      if (!imageInput.files[0]) {
+        statusText.textContent = '⚠️ يرجى اختيار صورة أولاً!';
+        resultDiv.style.background = 'rgba(255, 77, 77, 0.1)';
+        resultDiv.classList.add('animate__animated', 'animate__headShake');
+        setTimeout(() => {
+          statusText.textContent = '📌 اختر صورة لبدء المعالجة';
+          resultDiv.style.background = 'transparent';
+          resultDiv.classList.remove('animate__headShake');
+        }, 2000);
+        return;
+      }
+
+      statusText.textContent = '📤 جاري رفع الصورة...';
+      resultDiv.innerHTML = '<div class="loading"></div><span id="statusText">📤 جاري رفع الصورة...</span>';
+      buttonText.innerHTML = '⏳ جاري المعالجة... <i class="fas fa-spinner fa-spin"></i>';
+      document.querySelector('button').disabled = true;
+
+      try {
+        // رفع الصورة
+        const catboxUrl = await uploadToCatbox(imageInput.files[0]);
+        
+        // استخدام البرومبت المخصص أو الافتراضي
+        const prompt = promptInput.value.trim() || 
+          "غير لون البشرة إلى الأسود مع الحفاظ على كل التفاصيل الأخرى كما هي بما في ذلك الملامح، الإضاءة، الشعر، الملابس، الوضعية، الخلفية والنمط. اجعل لون البشرة يبدو طبيعيًا مع ملمس واقعي.";
+
+        statusText.textContent = '⚙️ جاري معالجة الصورة...';
+        resultDiv.innerHTML = '<div class="loading"></div><span id="statusText">⚙️ جاري معالجة الصورة...</span>';
+
+        // بدء المعالجة
+        const processRes = await axios.get('https://emam-x-api.vercel.app/home/sections/Tools/api/api/process-image', {
+          params: {
+            imageUrl: catboxUrl,
+            prompt: prompt
+          },
+          timeout: 30000
+        });
+
+        const rid = processRes.data.recordId;
+        if (!rid) throw new Error('فشل بدء المعالجة');
+
+        // التحقق من النتيجة
+        let resultUrl = null;
+        let attempts = 0;
+        const maxAttempts = 15;
+        const checkInterval = 4000;
+        
+        while (!resultUrl && attempts < maxAttempts) {
+          attempts++;
+          await new Promise(resolve => setTimeout(resolve, checkInterval));
+          
+          try {
+            const checkRes = await axios.get('https://emam-x-api.vercel.app/home/sections/Tools/api/api/check-result', {
+              params: { rid: rid },
+              timeout: 10000
+            });
+
+            if (checkRes.data?.completed) {
+              if (checkRes.data?.resultUrl) {
+                resultUrl = checkRes.data.resultUrl;
+                break;
+              } else if (checkRes.data?.error) {
+                throw new Error(checkRes.data.error);
+              }
+            }
+          } catch (err) {
+            console.error(`المحاولة ${attempts}:`, err.message);
+            if (attempts >= maxAttempts) throw new Error('استغرقت العملية وقتًا أطول من المتوقع');
+          }
+        }
+
+        if (!resultUrl) throw new Error('تعذر الحصول على النتيجة النهائية');
+
+        // عرض النتيجة
+        statusText.textContent = '✅ تمت المعالجة بنجاح!';
+        resultDiv.innerHTML = `
+          <div class="success-message animate__animated animate__bounceIn">🎉 تمت المعالجة بنجاح!</div>
+          <img src="${resultUrl}" alt="صورة معدلة" class="animate__animated animate__zoomIn" />
+          <a href="${resultUrl}" download="tyson-modified-image.jpg" class="download-btn animate__animated animate__fadeInUp animate__delay-1s">
+            ⬇️ تحميل الصورة المعدلة <i class="fas fa-download"></i>
+          </a>
+        `;
+
+      } catch (err) {
+        console.error(err);
+        statusText.textContent = `❌ ${err.message}`;
+        resultDiv.innerHTML = `<div class="error-message animate__animated animate__shakeX">❌ ${err.message}</div>`;
+        resultDiv.style.background = 'rgba(255, 77, 77, 0.1)';
+      } finally {
+        buttonText.innerHTML = '🎨 بدء التعديل <i class="fas fa-magic"></i>';
+        document.querySelector('button').disabled = false;
+      }
+    }
+    
+    // تهيئة الجسيمات عند تحميل الصفحة
+    window.addEventListener('load', () => {
+      createParticles();
+      
+      // إضافة تأثيرات عند التمرير
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      document.querySelectorAll('.card, .result-container').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+  </html>
